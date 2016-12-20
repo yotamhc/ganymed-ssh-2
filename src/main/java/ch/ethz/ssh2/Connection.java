@@ -85,26 +85,26 @@ public class Connection
 		return KexManager.getDefaultServerHostkeyAlgorithmList();
 	}
 
-	private AuthenticationManager am;
+	protected AuthenticationManager am;
 
-	private boolean authenticated = false;
-	private ChannelManager cm;
+	protected boolean authenticated = false;
+	protected ChannelManager cm;
 
-	private CryptoWishList cryptoWishList = new CryptoWishList();
+	protected CryptoWishList cryptoWishList = new CryptoWishList();
 
-	private DHGexParameters dhgexpara = new DHGexParameters();
+	protected DHGexParameters dhgexpara = new DHGexParameters();
 
-	private final String hostname;
+	protected final String hostname;
 
-	private final int port;
+	protected final int port;
 
-	private TransportManager tm;
+	protected TransportManager tm;
 
-	private boolean tcpNoDelay = false;
+	protected boolean tcpNoDelay = false;
 
-	private ProxyData proxyData = null;
+	protected ProxyData proxyData = null;
 
-	private List<ConnectionMonitor> connectionMonitors = new Vector<ConnectionMonitor>();
+	protected List<ConnectionMonitor> connectionMonitors = new Vector<ConnectionMonitor>();
 
 	/**
 	 * Prepares a fresh <code>Connection</code> object which can then be used
@@ -442,7 +442,7 @@ public class Connection
 
 		return authenticated;
 	}
-
+	
 	/**
 	 * A convenience wrapper function which reads in a private key (PEM format, either DSA or RSA)
 	 * and then calls <code>authenticateWithPublicKey(String, char[], String)</code>.
@@ -1029,7 +1029,7 @@ public class Connection
 		return false;
 	}
 
-	private SecureRandom getOrCreateSecureRND()
+	protected SecureRandom getOrCreateSecureRND()
 	{
 		if (generator == null)
 			generator = new SecureRandom();

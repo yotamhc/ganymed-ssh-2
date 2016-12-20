@@ -40,25 +40,25 @@ import ch.ethz.ssh2.transport.TransportManager;
  */
 public class AuthenticationManager implements MessageHandler
 {
-	private TransportManager tm;
+	protected TransportManager tm;
 
-	private final List<byte[]> packets = new Vector<byte[]>();
-	private boolean connectionClosed = false;
+	protected final List<byte[]> packets = new Vector<byte[]>();
+	protected boolean connectionClosed = false;
 
-	private String banner;
+	protected String banner;
 
-	private String[] remainingMethods = new String[0];
-	private boolean isPartialSuccess = false;
+	protected String[] remainingMethods = new String[0];
+	protected boolean isPartialSuccess = false;
 
-	private boolean authenticated = false;
-	private boolean initDone = false;
+	protected boolean authenticated = false;
+	protected boolean initDone = false;
 
 	public AuthenticationManager(TransportManager tm)
 	{
 		this.tm = tm;
 	}
 
-	boolean methodPossible(String methName)
+	protected boolean methodPossible(String methName)
 	{
 		if (remainingMethods == null)
 			return false;
@@ -106,7 +106,7 @@ public class AuthenticationManager implements MessageHandler
 		}
 	}
 
-	byte[] getNextMessage() throws IOException
+	protected byte[] getNextMessage() throws IOException
 	{
 		while (true)
 		{
@@ -137,7 +137,7 @@ public class AuthenticationManager implements MessageHandler
 		return isPartialSuccess;
 	}
 
-	private boolean initialize(String user) throws IOException
+	protected boolean initialize(String user) throws IOException
 	{
 		if (initDone == false)
 		{
@@ -281,7 +281,7 @@ public class AuthenticationManager implements MessageHandler
 			throw (IOException) new IOException("Publickey authentication failed.").initCause(e);
 		}
 	}
-
+	
 	public boolean authenticateNone(String user) throws IOException
 	{
 		try
